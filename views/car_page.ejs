@@ -1,0 +1,46 @@
+<% include partials/header %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            
+        </div>
+        <div class="col-md-9">
+            <div class="card car-card" >
+                <img class="card-img-top" style="width:100%;height:auto;" src="<%= car.image %>" alt="Card image cap">
+                <div class="card-block text-left">
+                    <h1 class="card-title "><%= car.name %></h1>
+                    <p class="card-text "><%= car.description %></p>
+                    
+                </div>
+            </div>    
+        
+            
+       
+        <div class="card comment-card text-left">
+            <div class="card-header text-right">
+    Reviews
+  </div>
+        <% car.comments.forEach(function(comment) { %>
+        <div class="card-block">
+            <h5 class="card-title"><%= comment.author.username %></h5>
+            <p class="card-text"><%= comment.text %></p>
+            <p class="text-right"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        <% }); %>
+        
+        </div>    
+        
+        </div>
+        
+    </div>
+    <%if(loggedUser && loggedUser.username==="alexjidras") {%>
+    <form id="deleteform" type="hidden" action="/cars/<%=car._id%>?_method=DELETE" method="POST">
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+        <a class="btn btn-warning" href="/cars/<%=car._id%>/edit">Edit</a>
+    <% }%>
+</div>
+
+
+<% include partials/footer %>

@@ -1,0 +1,14 @@
+<% include partials/header %>
+<div class="container">
+            
+    <form class="form-signin" action="/cars/<%=car._id%>?_method=PUT" method='POST'>
+        <h1 class="form-signin-heading ">Edit car</h1>
+        <label for="inputEmail" class="sr-only">Car name</label>
+        <input type="text" name="car[name]" id="inputEmail" value="<%=car.name%>" class="form-control" placeholder="Car name" required autofocus="">
+        <label for="inputPassword" class="sr-only">Url</label>
+        <input type="url" id="inputPassword" name="car[image]" value="<%=car.image%>" class="form-control" placeholder="Url" required>  
+        <label for="inputdescription" class="sr-only">Url</label>
+        <textarea type="text" id="inputdescription"  name="car[description]" class="form-control" placeholder="Description" ><%=car.description%></textarea>
+        <button class="btn btn-md btn-primary btn-block" type="submit">Save</button>
+    </form>
+    <% include partials/footer %>
