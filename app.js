@@ -14,7 +14,7 @@ var express=require("express"),
     commentRoutes=require("./routes/comments.js");
     
 
-mongoose.connect("mongodb://localhost/mydb");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/mydb");
 
 app.use(express.static("public"));
 app.set("view engine", "ejs");
