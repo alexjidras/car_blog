@@ -40,7 +40,7 @@
         <a class="nav-link" href="/register">Sign Up</a></li>
               <% } else { %>
               <li>
-        <a class="nav-link" href="javascript:void(0)"><%=loggedUser.username %><%if(loggedUser.username==="alexjidras") {%>
+        <a class="nav-link" href="javascript:void(0)"><%=loggedUser.username %><%if(loggedUser.username === "alexjidras") {%>
             (<span class="text-success">ADMIN</span>)<%}%></a></li>
               <li>
         <a class="nav-link" href="/logout">Logout</a></li>
@@ -50,5 +50,9 @@
       </span>
   </div>
               </div>          
-</nav>
-           
+</nav>         
+
+<div class="container">
+<%if(err) {%>
+	<div class="alert alert-danger" role="alert"><%=err%></div> 
+<% } %>
