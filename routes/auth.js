@@ -13,9 +13,7 @@ router.get("/login", function(req,res) {
 router.post("/login", passport.authenticate("local", {
     successRedirect: "/cars",
     failureRedirect: "/login"
-}), function(req,res) {
-    
-});
+}));
 
 router.get("/register", function(req,res) {
     res.render("register", {title: "Register"});
@@ -23,11 +21,8 @@ router.get("/register", function(req,res) {
 
 router.post("/register", function(req,res) {
     User.register(new User({username: req.body.username}), req.body.password, function(err, user) {
-        if (err) {
-            console.log(err);
-           return res.redirect("/register");
-                 }
-        passport.authenticate("local")(req,res,function() {
+        if (err) return res.redirect("/register");
+        passport.authenticate("local")(req,res, function() {
             res.redirect("/");
         });
     });
