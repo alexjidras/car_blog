@@ -4,13 +4,13 @@
 		 <div class="alert alert-danger" role="alert"><%=err%></div>
 	<% } %>         
     <form class="form-signin" action="/cars" method='POST'>
-        <h1 class="form-signin-heading ">Sign your car</h1>
+        <h1 class="form-signin-heading ">Add a car</h1>
         <label for="inputEmail" class="sr-only">Car name</label>
         <input type="text" name="car[name]" id="inputEmail" class="form-control" placeholder="Car name" required autofocus="">
         <label for="inputPassword" class="sr-only">Url</label>
         <input type="url" id="inputPassword" name="car[image]" class="form-control" placeholder="Url" required>  
         <label for="inputdescription" class="sr-only">Url</label>
-        <input type="text" id="inputdescription" name="car[description]" class="form-control" placeholder="Description" >
+        <textarea type="text" rows="3" id="inputdescription" name="car[description]" class="form-control" placeholder="Description" ></textarea>
         <button class="btn btn-md btn-primary btn-block" type="submit">Submit</button>
     </form>
 
