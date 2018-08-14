@@ -11,19 +11,21 @@ var express=require("express"),
     passportLocalMongoose =require("passport-local-mongoose"),
     basicRoutes= require("./routes/basic.js"),
     authRoutes= require("./routes/auth.js"),
-    commentRoutes=require("./routes/comments.js");
-    
+    commentRoutes=require("./routes/comments.js"),
+    sanitizer = require('express-sanitizer');
+
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/mydb");
 
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended :true}));
+app.use(sanitizer());
 app.use(methodOverride("_method"));
 
 
 app.use(require("express-session")({
-    secret: process.env.SECRET || "ILikeCars",
+    secret: process.env.SECRET || "ilikecars",
     resave: false,
     saveUninitialized: false
 }));
@@ -43,12 +45,12 @@ app.use(basicRoutes);
 app.use(authRoutes);
 app.use(commentRoutes);
 
-//========= End routes ==========//
 
+app.use((req,res)=> res.render("error", {title: "Error", message: "Page not found!"}));
 
-app.get("*", function(req, res) {
-    res.render("error", {title: "Error"});
-   
+app.use((err, req,res,next) => {
+    console.error(err);
+    res.render("error", {title: "Error", message: "Something went wrong!"});
 });
 
 app.listen(process.env.PORT || 3000, function() {

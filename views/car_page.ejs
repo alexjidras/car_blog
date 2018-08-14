@@ -14,11 +14,10 @@
                 </div>
             </div>    
         
-            
-       
+                  
         <div class="card comment-card text-left">
             <div class="card-header text-right">
-			    Comments
+			    Comments  <span style="font-size:12px">(<%=car.comments.length%>)</span>
             </div>
         <% car.comments.forEach(function(comment) { %>
         <div class="card-block">
@@ -31,7 +30,7 @@
         
 		</div>    
         <a href="<%=car._id%>/comments/new" class="btn btn-info float-right">Add comment</a>
-        <%if(loggedUser && loggedUser.username==="alexjidras") {%>
+        <%if(loggedUser && loggedUser.isAdmin) {%>
         <form id="deleteform" type="hidden" action="/cars/<%=car._id%>?_method=DELETE" method="POST">
                 <button type="submit" class="btn btn-danger">Delete</button>
         </form>
